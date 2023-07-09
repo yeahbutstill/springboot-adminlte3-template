@@ -2,7 +2,6 @@ package com.hendisantika.controller;
 
 import com.hendisantika.entity.User;
 import com.hendisantika.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class AdminPageController {
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public AdminPageController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @GetMapping({"/user/list", "/admin/user"})
     public String listUser() {
